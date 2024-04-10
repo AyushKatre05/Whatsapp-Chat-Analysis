@@ -5,6 +5,8 @@ from collections import Counter
 import emoji
 import re
 
+
+
 extract = URLExtract()
 
 def fetch_stats(selected_user,df):
