@@ -2,6 +2,8 @@ import streamlit as st
 import preprocessor,helper
 import matplotlib.pyplot as plt
 import seaborn as sns
+from helper import top_active_hours
+
 
 st.sidebar.title("Whatsapp Chat Analyzer")
 
@@ -20,7 +22,7 @@ if uploaded_file is not None:
 
     selected_user = st.sidebar.selectbox("Show analysis wrt",user_list)
 
-    if st.sidebar.button("Show Analysis"):
+    if st.sidebar.button("Show Analysis",key="button1"):
 
         # Stats Area
         num_messages, words, num_media_messages, num_links = helper.fetch_stats(selected_user,df)
@@ -127,13 +129,3 @@ if uploaded_file is not None:
             fig,ax = plt.subplots()
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct="%0.2f")
             st.pyplot(fig)
-
-
-
-
-
-
-
-
-
-

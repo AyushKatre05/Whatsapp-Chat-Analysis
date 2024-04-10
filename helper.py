@@ -2,12 +2,23 @@ from urlextract import URLExtract
 from wordcloud import WordCloud
 import pandas as pd
 from collections import Counter
-import emoji
 import re
-
+from textblob import TextBlob
 
 
 extract = URLExtract()
+
+def top_active_hours(selected_user, df):
+    """
+    Calculate the top active hours of the selected user.
+    """
+    if selected_user != 'Overall':
+        df = df[df['user'] == selected_user]
+
+    df['hour'] = df['date'].dt.hour
+    active_hours = df['hour'].value_counts().sort_index()
+
+    return active_hours
 
 def fetch_stats(selected_user,df):
 
